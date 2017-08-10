@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const GamesController = require("./controllers/game");
+const CategoriesController = require('./controllers/categories');
 const app = express();
 
 mongoose.Promise = global.Promise;
@@ -20,7 +21,9 @@ connection.on('error', (err) => {
 })
 
 app.use(bodyParser.json());
+ape.use(express.static(_dirname = '/client/build/'));
 
+ape.use('/api/category', CategoriesController);
 app.use("/api/game", GamesController);
 app.get("/", (req, res) => {
   res.send("Hello World!");
